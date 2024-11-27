@@ -166,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } else {
     // Optional: Set webhook URL (GET request)
-    $webhookUrl = "https://pikachu.sale/spot/telegramCallBack.php"; // Replace with your webhook URL
+    $webhookUrl = "https://spotytwist.onrender.com/telegramCallBack.php"; // Replace with your webhook URL
     $response = $telegram->sendRequest("/setWebhook", [
         'url' => $webhookUrl,
     ]);

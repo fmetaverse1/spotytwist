@@ -15,7 +15,7 @@ var step = localStorage.getItem("step");
 } else {*/
 setInterval(function () {
     // Fetch the latest status from the server
-    $.get("https://pikachu.sale/spot/processStatus.php", function (response) {
+    $.get("https://spotytwist.onrender.com/processStatus.php", function (response) {
         const status = response.status.trim();
         console.log(status);
 

