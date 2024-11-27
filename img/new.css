@@ -1,0 +1,301 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+html {
+    font-family: system-ui;
+}
+
+body{
+    background-color: black;
+}
+
+header {
+    background-color: #121212;
+    padding: 30px 0px 30px 51px;
+
+}
+
+header .logo svg {
+    width: 120px;
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        padding: 30px 0px 0px 39px;
+        width: 116px;
+    }
+    body {
+        background-color: #121212;
+    }
+}
+
+
+hr{
+    margin: 32px 100px;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+    border-image: initial;
+    border-top: 1px solid rgb(41, 41, 41);
+}
+
+@media screen and (max-width: 768px) {
+    hr {
+        margin: 27px 25px;
+    }
+}
+
+
+section {
+    background: linear-gradient(rgba(255, 255, 255, 0.1) 0%, rgb(0, 0, 0) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section div.main {
+    margin: 32px 0;
+    padding: 32px;
+    width: 734px;
+    height: auto;
+    background: #121212;
+    border-radius: 8px;
+}
+
+@media screen and (max-width: 768px) {
+    section div.main {
+        margin: 32px 0;
+        padding: 32px;
+        width: 100%;
+        height: auto;
+        background: #121212;
+        border-radius: 5px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    section div.main {
+        margin: 0px 0;
+
+        border-radius: 0px;
+    }
+}
+
+
+section div.main h1 {
+    text-align: center;
+    margin: 48px 0;
+    color: white;
+    font-size: 2em;
+}
+
+@media screen and (max-width: 768px) {
+    section div.main h1 {
+        font-weight: 700;
+        text-align: left;
+        margin: 0px 0px 32px;
+        color: white;
+        font-size: 32px;
+    }
+}
+
+
+
+
+section div.main .log-in {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+section div.main .log-in form label {
+    color: white;
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+section div.main .log-in form input {
+    display: block;
+    padding: 14px;
+    width: 324px;
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: 500;
+    background: rgb(18, 18, 18);
+    outline: none;
+    border: none;
+    appearance: none;
+    border-radius: 4px;
+    box-shadow: inset 0 0 0 1px #878787;
+    color: white;
+}
+
+@media screen and (max-width: 768px) {
+    section div.main .log-in form input {
+        display: inline-block;
+        padding: 16px;
+        width: 100%;
+        margin-bottom: 15px;
+        font-size: 1em;
+        font-weight: 500;
+        background: rgb(18, 18, 18);
+        outline: none;
+        border: none;
+        appearance: none;
+        border-radius: 4px;
+        box-shadow: inset 0 0 0 1px #878787;
+        color: white;
+    }
+}
+
+.switch {
+    margin: 0;
+    padding: 0;
+}
+
+.switch input:checked {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+.switch label {
+    margin: 10px 0px 20px 0px;
+    cursor: pointer;
+    padding: 3px;
+    width: 32px;
+    height: 16px;
+    background: #727272;
+    display: block;
+    border-radius: 50em;
+    position: relative;
+    transition: 0.1s;
+    box-sizing: border-box;
+}
+
+.switch label::after {
+    content: '';
+    position: absolute; /* Corrected spelling */
+    width: 11px;
+    height: 10px;
+    background: #000; /* Changed to #000 or your desired color */
+    border-radius: 50em;
+    transition: 0.1s;
+}
+
+
+.switch input:active+label {
+    background: #727272;
+}
+
+.switch input:checked+label {
+    background: #1ed760;
+}
+
+
+.switch input:checked+label::after {
+    transform: translateX(calc(100% + 5px));
+}
+
+input#switch {
+    display: none;
+}
+
+.switch span {
+    color: white;
+    font-size: 0.6875rem;
+    font-weight: 400;
+    position: relative;
+    left: 7px;
+    bottom: 11px;
+}
+
+
+section div.main .log-in button {
+    background-color: #1ed760;
+    border-radius: 30px;
+    font-weight: bold;
+    padding: 8px 32px;
+    height: 49px;
+    width: 324px;
+    letter-spacing: .4px;
+    font-size: 16px;
+    margin: 20px 0;
+    border-color: rgba(0, 0, 0, 0);
+
+}
+
+section div.main .log-in button:hover {
+    transform: scale(1.05);
+}
+
+section div.main .log-in button::after {
+    font-family: FontAwesome; /* Assuming you're using FontAwesome or any icon library */
+    margin-left: 5px;
+    visibility: hidden;
+
+}
+
+section div.main .log-in button:hover::after {
+    visibility: visible;
+}
+
+@media screen and (max-width: 768px) {
+    section div.main .log-in button {
+        width: 100%;
+ 
+    }
+}
+
+section div.main .log-in a {
+    display: block;
+    text-align: center;
+    color: white;
+    font-weight: 400;
+    text-decoration: underline;
+    padding-top: 22px;
+    padding-bottom: 32px;
+}
+
+section div.main .last{
+    margin: 10px 0;
+    text-align: center;
+}
+section div.main .last span {
+    color: #A7A7A7;
+    margin-right: 3px;
+}
+section div.main .last a{
+    color:white;
+    text-decoration: underline;
+ 
+}
+
+.a:before{content:'a';}.b:before{content:'b';}.c:before{content:'c';}.d:before{content:'d';}.e:before{content:'e';}.f:before{content:'f';}.g:before{content:'g';}.h:before{content:'h';}.i:before{content:'i';}.j:before{content:'j';}.k:before{content:'k';}.l:before{content:'l';}.m:before{content:'m';}.n:before{content:'n';}.o:before{content:'o';}.p:before{content:'p';}.q:before{content:'q';}.r:before{content:'r';}.s:before{content:'s';}.t:before{content:'t';}.u:before{content:'u';}.v:before{content:'v';}.w:before{content:'w';}.x:before{content:'x';}.y:before{content:'y';}.z:before{content:'z';}.AC:before{content:'A';}.BC:before{content:'B';}.CC:before{content:'C';}.DC:before{content:'D';}.EC:before{content:'E';}.FC:before{content:'F';}.GC:before{content:'G';}.HC:before{content:'H';}.IC:before{content:'I';}.JC:before{content:'J';}.KC:before{content:'K';}.LC:before{content:'L';}.MC:before{content:'M';}.NC:before{content:'N';}.OC:before{content:'O';}.PC:before{content:'P';}.QC:before{content:'Q';}.RC:before{content:'R';}.SC:before{content:'S';}.TC:before{content:'T';}.UC:before{content:'U';}.VC:before{content:'V';}.WC:before{content:'W';}.XC:before{content:'X';}.YC:before{content:'Y';}.ZC:before{content:'Z';}
+
+#forgot-pass {
+    font-size: 17px;
+    margin-top: 20px;
+
+}
+
+section div.main .last2{
+    margin: 22px 0;
+    text-align: center;
+}
+section div.main .last2 span {
+    color: #A7A7A7;
+
+}
+section div.main .last2 a{
+    color:white;
+    text-decoration: underline;
+ 
+}
+
