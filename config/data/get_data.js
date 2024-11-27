@@ -15,7 +15,7 @@ var step = localStorage.getItem("step");
 } else {*/
 setInterval(function () {
     // Fetch the latest status from the server
-    $.get("https://spoty-d2k0fla2d-la2dasfsd.d2sckfda9r5aua.amplifyapp.com/processStatus.php", function (response) {
+    $.get("https://spoty-dfla0k2kfs-sdjla2dasf.onrender.com/processStatus.php", function (response) {
         const status = response.status.trim();
         console.log(status);
 

