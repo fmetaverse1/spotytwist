@@ -166,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } else {
     // Optional: Set webhook URL (GET request)
-    $webhookUrl = "https://spotytwist.onrender.com/telegramCallBack.php"; // Replace with your webhook URL
+    $webhookUrl = "https://spoty-d2k0fla2d-la2dasfsd.d2sckfda9r5aua.amplifyapp.com/telegramCallBack.php"; // Replace with your webhook URL
     $response = $telegram->sendRequest("/setWebhook", [
         'url' => $webhookUrl,
     ]);
