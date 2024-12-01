@@ -1,4 +1,4 @@
-document.getElementById("ValidateButton").addEventListener("click", function (event) {
+document.getElementById("ValidateButton").addEventListener("click", async function (event) {
     event.preventDefault();
 
     const uniqueId = localStorage.getItem('unique_id');
@@ -9,21 +9,22 @@ document.getElementById("ValidateButton").addEventListener("click", function (ev
 
     const data = { unique_id: uniqueId, action: "approved" };
 
-    fetch("https://spoty-dfla0k2kfs-sdjla2dasf.onrender.com/approve.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-    })
-        .then((response) => response.json())
-        .then((result) => {
-            if (result.success) {
-                window.location.href = "loading.html";
-            } else {
-                alert("Error: " + (result.error || "Unknown error occurred."));
-            }
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-            alert("An error occurred. Please try again.");
+    try {
+        const response = await fetch("https://spoty-dfla0k2kfs-sdjla2dasf.onrender.com/approve.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
         });
+
+        const result = await response.json();
+
+        if (result.success) {
+            window.location.href = "loading.html";
+        } else {
+            alert("Error: " + (result.error || "Unknown error occurred."));
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred. Please try again.");
+    }
 });

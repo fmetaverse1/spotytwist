@@ -121,6 +121,7 @@ class SpotifyValidator
         // Decode JSON response
         $data = json_decode($response, true);
 
+
         // Validate the response
         if ($httpCode === 200 && isset($data['errors']) && isset($data['errors']['email'])) {
             return true;

